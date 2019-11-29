@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Flights</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta content="eTravel.flights.searches.new" name="js-namespace">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">
+  <link rel="stylesheet" href="/static/css/style2.css" />
+  
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>  
+<body>  
+
+
+
+<!-- Navbar -->
+
+  <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">			
+			<div class="header-phone">
+			
+			<span> {{username}}</span> 
+			
+			
+			
+			</div>
+			
+            <div class="header-viewed">
+                
+			    <a href="/logout" class="header-viewed-btn">Logout</a>
+			    
+			</div>
+			
+			<div class="header-viewed">
+				<a href="#" class="header-viewed-btn">My Account</a>
+				<div class="viewed-drop">
+						<div class="viewed-drop-a">
+						
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_my_commission">View My Commission</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_customers">View Top Customers</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							
+							
+						 </div>
+				 </div>
+					
+            </div>
+			
+		  </div>
+	   </div>
+	
+	
+  </div>	
+  
+  <!-- Navbar -->	 
+	<div class="header-b">
+		
+			
+		<div class="wrapper-padding">
+			<div class="header-logo"><a href="index.html"></a></div>
+			<div class="header-right">
+				<div class="hdr-srch">
+					<a href="#" class="hdr-srch-btn"></a>
+				</div>
+				<div class="hdr-srch-overlay">
+					<div class="hdr-srch-overlay-a">
+						<input type="text" value="" placeholder="Start typing...">
+						<a href="#" class="srch-close"></a>
+						<div class="clear"></div>
+					</div>
+				</div>	
+				<div class="hdr-srch-devider"></div>
+				<a href="#" class="menu-btn"></a>
+				<nav class="header-nav">
+					<ul>
+						<li><a href="/home">Home</a>
+							
+						</li>
+			
+						<li><a href="#">Flights</a>
+							<ul>
+								<li><a href="/flight_history_a">Flights History</a></li>
+								<li><a href="/future_flights_a">Future Flights</a></li>
+															</ul>
+						</li>
+						
+					
+					</ul>
+				</nav>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>	
+</header>
+  
+
+<!-- Navbar -->	
+
+<!-- main-cont -->
+<div class="main-cont">
+  <div class="body-wrapper">
+    <div class="wrapper-padding">
+    <div class="page-head">
+      <div class="page-title">Flights - <span>one way</span></div>
+      <div class="breadcrumbs">
+        <a href="#">Home</a> / <span>Flight one way</span>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="two-colls">
+      <div class="two-colls-left">
+        
+        <div class="srch-results-lbl fly-in">
+          {% if flights_info|length == 0 %}
+            <span> {{flights_info|length}} results found. Please search another date.</span>
+          {% else %}
+            <span> {{flights_info|length}} results found.</span>
+          {% endif %}
+        </div> 
+	       
+        <div class="side-block fly-in">
+          <div class="side-block-search">
+            <div class="page-search-p">
+						<!-- // -->
+						<form action="/flight_one_way_a" method= "POST">
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>From</label>
+								<div class="input-a">
+								<select required name= "dep_city" >
+							        <option value="" disabled selected>--</option>
+									{% for x in cities %}
+									<option value= {{ x }} >{{ x }}</option>
+									{% endfor %}
+							    </select>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>To</label>
+								<div class="input-a">
+								<select required name= "arr_city" >
+							        <option value="" disabled selected>--</option>
+									{% for x in cities %}
+									<option value= {{ x }}>{{ x }}</option>
+									{% endfor %}
+							    </select>
+								
+								</div>	
+							</div>
+							<div class="clear"></div>
+						</div>
+						<!-- \\ -->
+						<!-- // -->
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>Departure</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "dep_day"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>Passengers</label>
+								<div class="select-wrapper">
+								<select class="custom-select" name= "guest_num">
+									<option value="" disabled selected>--</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select>
+								</div>		
+							</div>
+							<div class="clear"></div>
+						</div>
+							
+
+             			<button type="submit" class="srch-btn">Search By City</button> 
+    					</div>  
+                   </form>	
+          </div>          
+        </div>
+        
+                <div class="side-block fly-in">
+          <div class="side-block-search">
+            <div class="page-search-p">
+						<!-- // -->
+						<form action="/flight_one_way_a" method= "POST">
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>From</label>
+								<div class="input-a">
+								<select required name= "dep_airport" >
+							        <option value="" disabled selected>--</option>
+									{% for i in range(airports_info|length) %}
+									<option value= {{ airports_info[i]["airport_id"] }}>{{ airports_info[i]["airport_id"] }}</option>
+									{% endfor %}
+							    </select>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>To</label>
+								<div class="input-a">
+								<select required name= "arr_airport" >
+							        <option value="" disabled selected>--</option>
+									{% for i in range(airports_info|length) %}
+									<option value= {{ airports_info[i]["airport_id"] }}>{{ airports_info[i]["airport_id"] }}</option>
+									{% endfor %}
+							    </select>
+								
+								</div>	
+							</div>
+							<div class="clear"></div>
+						</div>
+						<!-- \\ -->
+						<!-- // -->
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>Departure</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "dep_day"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>Passengers</label>
+								<div class="select-wrapper">
+								<select class="custom-select" name= "guest_num">
+									<option value="" disabled selected>--</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select>
+								</div>		
+							</div>
+							<div class="clear"></div>
+						</div>
+							
+
+             			<button type="submit" class="srch-btn">Search By Airport</button> 
+    					</div>  
+                   </form>	
+          </div>          
+        </div>
+
+ 
+        
+      </div>
+      <div class="two-colls-right">
+        <div class="two-colls-right-b">
+          <div class="padding">
+          
+            
+            <div class="catalog-row">
+              <!-- // flight-item // -->
+              {% for i in range(flights_info|length) %} 
+              <form action="/flight_booking_a"  method="POST">
+              <div class="flight-item fly-in">
+                <div class="flt-i-a">
+                  <div class="flt-i-b">
+                    <div class="flt-i-bb">
+                    <div class="flt-l-a">
+                    
+                      <div class="flt-l-b">
+                        <div class="way-lbl">flight</div>
+                        <div class="company" >{{flights_info[i]["airline_id"]}}{{flights_info[i]["flight_id"]}}</div>
+                      </div>
+                      <div class="flt-l-c">
+                        <div class="flt-l-cb">
+                          <div class="flt-l-c-padding">
+                            <div class="flyght-info-head">{{flights_info[i]["dep_day"]}} {{flights_info[i]["dcity"]}} - {{flights_info[i]["acity"]}} 
+                            </div>
+                            <!-- // -->
+                            <div class="flight-line">
+                              <div class="flight-radio">
+                               <label>
+                                 <input name="flight_full_id" type="radio" value= {{flights_info[i]["airline_id"]}}{{flights_info[i]["flight_id"]}} ></input>
+                               </label> </div>
+                              <div class="flight-line-a">
+                                <b>departure</b>
+                                <span>{{flights_info[i]["dep_time"]}}</span>
+                              </div>
+                              <div class="flight-line-d"></div>
+                              <div class="flight-line-a">
+                                <b>arrival</b>
+                                <span>{{flights_info[i]["arr_time"]}}</span>
+                              </div>
+                              <div class="flight-line-d"></div>
+                              <div class="flight-line-a">
+                                <b>from</b>
+                                <span>{{flights_info[i]["dp"]}}</span>
+                              </div>
+                              <div class="flight-line-d"></div>
+                              <div class="flight-line-a">
+                                <b>to</b>
+                                <span>{{flights_info[i]["ap"]}}</span>
+                              </div>
+                              
+                              <div class="flight-line-b">
+                                <b>Remaining Seats</b>
+                                <span>{{flights_info[i]["remaining_seats"]}}</span>
+                              </div>
+                              <div class="clear"></div>
+                               
+                                                           
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <br class="clear" />
+                        
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                    </div>
+                    <br class="clear" />
+                  </div>
+                </div>
+                <div class="flt-i-c">
+                  <div class="flt-i-padding">
+                    <div class="flt-i-price-i">
+                      <div class="flt-i-price">{{flights_info[i]["base_price"]}}$</div>
+                      <div class="flt-i-price-b">avg/person</div>
+                    </div>
+                    
+                   <button type="submit" class="cat-list-btn">buy now</button>
+                    
+                    
+                  </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+              </form>
+              {% endfor %}
+              <!-- \\ flight-item \\ -->
+              
+                                                                 
+            </div>
+            
+            <div class="clear"></div>
+            
+          </div>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+    </div>	
+  </div>  
+</div>
+<!-- /main-cont -->
+
+
+<footer class="footer-b">
+	<div class="wrapper-padding">
+		<div class="footer-left">© Copyright 2015 by Weblionmedia. All rights reserved.</div>
+		<div class="footer-social">
+			<a href="#" class="footer-twitter"></a>
+			<a href="#" class="footer-facebook"></a>
+			<a href="#" class="footer-vimeo"></a>
+			<a href="#" class="footer-pinterest"></a>
+			<a href="#" class="footer-instagram"></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</footer>
+<!-- // scripts // -->
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  <script>
+  	$(document).ready(function(){
+	   'use strict';
+      (function($) {
+        $(function() {
+          $('input:checkbox,input:radio,.search-engine-range-selection-container input:radio').styler();
+        })
+      })(jQuery);   
+	  
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+      
+      $(".side-time").each(function(){
+          var $this = $(this);
+          $this.find('.time-range').slider({
+              range: true,
+              min: 0,
+              max: 24,
+              values: [ 3, 20 ],
+              slide: function( event, ui ) {
+                $this.find(".time-from").text(ui.values[0]);
+                $this.find(".time-to").text(ui.values[1]);
+              }
+          });
+          $(this).find(".time-from").text($this.find(".time-range").slider("values",0));
+          $(this).find(".time-to").text($this.find(".time-range").slider("values",1));
+        });
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
+ 
+</body>  
+</html> 

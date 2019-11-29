@@ -1,0 +1,324 @@
+<html>
+<head>
+  <title>Home</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta content="eTravel.flights.searches.new" name="js-namespace">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">
+  <link rel="stylesheet" href="/static/css/style2.css" />
+  
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>  
+
+<body>
+
+<!-- Navbar -->
+
+  <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">			
+			<div class="header-phone">
+			
+			<span> {{username}}</span> 
+			
+			
+			
+			</div>
+
+			
+			
+            <div class="header-curency">
+                
+			    <a href="/logout">Logout</a>
+			    
+			</div>
+			
+            <div class="header-viewed">
+
+				<a href="#" class="header-viewed-btn">{{airline_id}}</a>
+				<div class="viewed-drop">
+						<div class="viewed-drop-a">
+						
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_agent"> View booking agents</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_fre_cus">View frequent customers</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							
+							<!-- // -->
+							<div class="viewed-item">
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_des">View Top destinations</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="viewed-item">
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/report">report</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>	
+							<div class="viewed-item">
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/home">home</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>														
+							<!-- \\ -->
+							
+						 </div>
+				 </div>
+					
+            </div>
+
+			</div>				
+			
+              
+			
+		  </div>
+	   </div>
+	
+	
+  </div>	
+</header>
+<!-- Navbar -->
+
+<div class="main-cont">
+<div class="clear"></div>
+
+<div class="body-wrapper">
+    
+<div class="side-block fly-in">
+          <div class="side-block-search">
+            <div class="page-search-p">
+						<!-- // -->
+						<form action="/report" method= "POST">
+						
+						<!-- // -->
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>Beginning</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "begin"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>End</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "end"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="clear"></div>
+						</div>
+							
+
+             			<button type="submit" class="srch-btn">Search</button> 
+    					</div>  
+                   </form>	
+          </div>          
+        </div>
+    </div>         
+  </div>
+
+
+ 
+
+  
+  <div class="swiper-container">
+  <center>
+  <h1>{{title}}</h1>
+  <p>In this time range, we have totally sold {{tickets_sold_all_range}} tickets</p>
+  </center>
+  
+ 
+  
+  
+  <center>
+    
+    <h2>Monthly Ticket Sold</h2>
+  </center>
+  <center>
+    <canvas id="chart_total" width="500" height="300"></canvas>
+  </center>
+  
+   <center>
+    
+    <h2>Compared revenue</h2>
+  </center>
+  <center>
+    <canvas id="chart_2" width="500" height="300"></canvas>
+  </center> 
+
+  
+    <script>
+      // bar chart data
+      
+      var barData_total = {
+        labels : [
+          {% for item in tickets_solds.keys() %}
+           "{{ item }}",
+          {% endfor %}
+	     ],
+        datasets : [{
+          label: 'tickets_solds',
+          fillColor: "rgba(255,127,80,0.2)",
+          strokeColor: "rgba(255,127,80,1)",
+          pointColor: "rgba(255,127,80,1)",
+          data : [
+            {% for item in tickets_solds.values() %}
+               "{{ item }}",
+              {% endfor %}]
+          },
+          
+          
+        ]
+      };
+        var pieData = 
+        [{
+            value: {{pie_ds}},
+            label: "direct sale",
+            color : "#F7464A"
+          },
+        {
+            value: {{pie_is}},
+            label: "indirect sale",
+            color : "#46BFBD"
+          }];  
+      
+      
+     
+
+     // get bar chart canvas
+     var mychart_total = document.getElementById("chart_total").getContext("2d");
+     var mychart_2 = document.getElementById("chart_2").getContext("2d");
+     
+     steps = 10;
+     max = {{max}};
+     
+     window.onload = function () {
+       
+        
+
+        window.myBar =  new Chart(mychart_total).Bar(barData_total, {
+                      
+                      scaleOverride: true,
+                      scaleSteps: steps,
+                      scaleStepWidth: Math.ceil(max / steps),
+                      scaleStartValue: 0,
+                      scaleShowVerticalLines: true,
+                      scaleShowGridLines : true,
+                      barShowStroke : true,
+                      scaleShowLabels: true }
+                      );
+        
+     	window.myPie = new Chart(mychart_2).Pie(pieData)
+    };
+
+      
+    </script>
+  </center>
+  <div class="clear"></div>
+  
+  
+  
+  
+  
+  </div>
+</div>
+
+
+<!-- // scripts // -->
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  <script>
+  	$(document).ready(function(){
+	   'use strict';
+      (function($) {
+        $(function() {
+          $('input:checkbox,input:radio,.search-engine-range-selection-container input:radio').styler();
+        })
+      })(jQuery);   
+	  
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+      
+      $(".side-time").each(function(){
+          var $this = $(this);
+          $this.find('.time-range').slider({
+              range: true,
+              min: 0,
+              max: 24,
+              values: [ 3, 20 ],
+              slide: function( event, ui ) {
+                $this.find(".time-from").text(ui.values[0]);
+                $this.find(".time-to").text(ui.values[1]);
+              }
+          });
+          $(this).find(".time-from").text($this.find(".time-range").slider("values",0));
+          $(this).find(".time-to").text($this.find(".time-range").slider("values",1));
+        });
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
+
+
+</body>
+
+
+
+
+</html>

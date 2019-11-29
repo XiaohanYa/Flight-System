@@ -1,0 +1,655 @@
+<html>
+<head>
+  <title>Home</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta content="eTravel.flights.searches.new" name="js-namespace">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">
+  <link rel="stylesheet" href="/static/css/style2.css" />
+  
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>  
+
+<body>
+
+<!-- Navbar -->
+
+  <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">			
+			<div class="header-phone">
+			
+			<span> {{username}}</span> 
+			
+			
+			
+			</div>
+
+			
+			
+            <div class="header-curency">
+                
+			    <a href="/logout">Logout</a>
+			    
+			</div>
+			
+            <div class="header-viewed">
+
+				<a href="#" class="header-viewed-btn">{{airline_id}}</a>
+				<div class="viewed-drop">
+						<div class="viewed-drop-a">
+						
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_agent"> View booking agents</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_fre_cus">View frequent customers</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							
+							<!-- // -->
+							<div class="viewed-item">
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_des">View Top destinations</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="viewed-item">
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/report">report</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>							
+							<!-- \\ -->
+							
+						 </div>
+				 </div>
+					
+            </div>
+
+			</div>				
+			
+              
+			
+		  </div>
+	   </div>
+	
+	
+  </div>	
+</header>
+<!-- Navbar -->	  
+<div class="main-cont">
+
+	<div class="mp-slider search-only">
+		<!-- // slider // -->
+		<div class="mp-slider-row">
+			<div class="swiper-container">
+				<img src= "/static/img/background.jpg" >
+			</div>
+		</div>
+		<!-- \\ slider \\ -->
+	</div>	
+	
+	<div class="wrapper-a-holder full-width-search">
+	<div class="wrapper-a">
+	
+		<!-- // search // -->
+		<div class="page-search full-width-search search-type-b">
+		  <div class="search-type-padding">
+			<nav class="page-search-tabs">
+
+				<div class="search-tab">Add Flight</div>
+				<div class="clear"></div>	
+			</nav>		
+			<div class="page-search-content">
+			
+				
+				<!-- // tab content tickets // -->
+				<div class="search-tab-content">
+					<div class="page-search-p">
+					<form action="/addflight" method= "POST">
+						<!-- // -->
+						<div class="search-large-i">
+						<!-- // -->
+						<div class="srch-tab-line">
+						    <div class="srch-tab-left">
+						    <label>from</label>
+							<select required class="custom-select" name= "departure_airport" >
+							        <option value="" disabled selected>--</option>
+									{% for x in airportid %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+							</select>
+							</div>
+							<div class="srch-tab-right">
+								<label>to</label>
+								<select required class="custom-select" name= "arrival_airport" >
+								    <option value="" disabled selected>--</option>
+									{% for x in airportid %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %} >{{ x }}</option>
+									{% endfor %}
+    							</select>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<!-- \\ -->							
+						</div>
+						<!-- \\ -->
+						<!-- // -->
+						<div class="search-large-i">
+						<!-- // -->
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>Departure</label>
+								<div class="input-a" >
+								<input class="date-inpt" name= "dep_day" type="text" placeholder="yyyy-mm-dd">
+								<input class="input-a" name= "dep_time" type="time" placeholder="hh:mm">								 
+								<span class="date-icon"></span></div>	
+							</div>
+							
+							<div class="srch-tab-right">
+								<label>Arrival</label>
+								<div class="input-a" >
+								<input class="date-inpt" name= "arr_day" type="text" placeholder="yyyy-mm-dd">
+								<input class="input-a" name= "arr_time" type="time" placeholder="hh:mm"> 
+								<span class="date-icon"></span></div>	
+							</div>
+							<div class="clear"></div>
+							
+						</div>
+						<!-- \\ -->							
+						</div><br>
+						<!-- \\ -->
+						<div class="search-large-i">
+						<!-- // -->
+						<div class="srch-tab-line">
+						<div class="srch-tab-left">
+							<label>Base Price</label>
+                            <div class="input-a" >
+                            <input name= "base_price" type="text" placeholder="$">
+                            </div>
+                        </div>
+						
+						<!-- \\ -->							
+
+						<!-- // -->
+						<div class="srch-tab-right">
+
+						
+								<label>Airplane</label>
+								<select class="custom-select" name= "airplane_id" >
+    								<option value="" disabled selected>--</option>
+									{% for x in airplaneid %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+								</select>
+								
+					
+						</div>
+						<div class="clear"></div>
+						<!-- \\ -->							
+						</div>											
+						<!-- \\ -->
+						<div class="search-large-i">
+						<!-- // -->
+						<div class="srch-tab-line">
+						<div class="srch-tab-left">
+							<label>flight num</label>
+                            <div class="input-a" >
+                            <input name= "flight_id" type="text" placeholder="xxx">
+                            </div>
+                        </div>
+						<div class="clear"></div>
+						<!-- \\ -->													
+						</div>											
+						<!-- \\ -->
+						<!-- // advanced // -->
+						</div>
+            				</div>
+            				<div class="clear"></div>
+					<footer class="search-footer">
+					    <button type="submit" class="srch-btn">Add</button>
+						
+						<div class="clear"></div>
+					</footer>
+				</div>
+				<!-- // tab content tickets // -->	
+				</form>						
+			</div>
+		</div>
+		</div>
+		<!-- \\ search \\ -->
+       </div>
+    	</div>
+	<div class="clear"></div><br><br><br><br><br><br><br><br>
+		
+  <div class="body-wrapper">
+    <div class="wrapper-padding">
+    <div class="page-head">
+      <div class="page-title">Flights - <span>{{flight_history}}</span></div>
+      <div class="breadcrumbs">
+        <a href="#">Home</a> / <span>Flight all</span>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="two-colls">
+      <div class="two-colls-left">
+        
+        <div class="srch-results-lbl fly-in">
+          {% if flight_info|length == 0 %}
+            <span> {{flight_info|length}} records found.</span>
+          {% else %}
+            <span> {{flight_info|length}} records found.</span>
+          {% endif %}
+        </div> 
+	       
+        
+
+        
+        <!-- // side // --> 
+        <div class="side-block fly-in">
+          <div class="side-stars">
+            <div class="side-padding">
+
+
+ 
+                <div class="side-lbl">change status</div>
+                <div class="side-lbl">Flight ID</div>
+              <form action="/changestatus" method= "POST">
+ 
+              <div class="search-select">
+                     
+							<select required name= "flight_id" >
+									{% for x in flightid %}
+									<option value= {{x}} {% if loop.first %} SELECTED{% endif %}>{{airline_id}}{{x}}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div><br>
+                <div class="side-lbl">status</div>
+               <div class="search-select">
+	
+								<select required name= "flight_status" >
+									<option value="on-time" >on time</option>
+									<option value="delay" >delay</option>
+    							</select>
+                </div>
+			  <button type="submit" class="srch-btn">Change</button>
+              </form>
+                  
+            </div>
+          </div>  
+        </div>
+        <!-- \\ side \\ -->     
+        <!-- // side // --> 
+        <div class="side-block fly-in">
+          <div class="side-stars">
+            <div class="side-padding">
+            {% for i in range(airplane|length) %}
+              <div class="side-lbl">Airplane: {{airplane[i]["airplane_id"]}} Seat: {{airplane[i]["amount_of_seat"]}}</div>  
+			  {% endfor %}
+
+ 
+                <div class="side-lbl">Add Airplane</div>
+              <form action="/addplane" method= "POST">
+ 
+
+              <div class= "input-a"> 
+                <label>ID</label>
+                  <input type="text" name= "airplane_id" pattern="[0-9]{1}" title="3 numbers"></input>
+
+              </div>
+               
+              <div class= "input-a">  
+                <label>SEAT</label>
+                  <input type="text" name= "amount_of_seat" ></input>
+              </div>
+			  <button type="submit" class="srch-btn">ADD</button>
+              </form>
+                  
+            </div>
+          </div>  
+        </div>
+        <!-- \\ side \\ -->
+        <!-- // side // --> 
+        <div class="side-block fly-in">
+          <div class="side-stars">
+            <div class="side-padding">
+
+
+ 
+                <div class="side-lbl">Add Airport</div>
+              <form action="/addairport" method= "POST">
+ 
+
+              <div class= "input-a"> 
+                <label>ID</label>
+                  <input type="text" name= "airport_id" pattern="[A-Z]{3}" title="3 letters"></input>
+
+              </div>
+               
+              <div class= "input-a">  
+                <label>name</label>
+                  <input type="text" name= "airport_name" ></input>
+              </div>
+              <div class= "input-a">  
+                <label>city</label>
+                  <input type="text" name= "city" ></input>
+              </div>
+			  <button type="submit" class="srch-btn">ADD</button>
+              </form>
+                  
+            </div>
+          </div>  
+        </div>
+        <!-- \\ side \\ -->     
+        
+      </div>
+      <div class="two-colls-right">
+        <div class="two-colls-right-b">
+          <div class="padding">
+          
+            <div class="catalog-head fly-in">
+              <label>Show results by future/past:</label>
+             
+              <form action="/flight_history_s"  method="POST" >
+              <div class="search-select">
+                           
+    				<select required name= "order_date">
+    					<option value= "PAST">Past</option>
+    					<option value= "FUTURE">future</option>
+    					<option value= "ALL">All</option>    								
+    				</select>
+    							
+    		  </div>
+    		  
+    					
+    				<button type="submit" class="srch-btn">Search</button>
+    		  
+    		  </form>
+              
+              <a href="#" class="show-list"></a>              
+ 
+              <div class="clear"></div>
+            </div>
+            
+            <div class="catalog-head fly-in">
+              <label>Show results by date range:</label><br><br>
+             
+              <form action="/flight_history_s_date_range"  method="POST" >
+				<div class="input-a" >
+				<label>from</label>
+				<input class="date-inpt" name= "from" type="text" placeholder="yyyy-mm-dd">							 
+				<span class="date-icon"></span>
+				</div>              
+				<div class="input-a" >
+				<label>to</label>
+				<input class="date-inpt" name= "to" type="text" placeholder="yyyy-mm-dd">							 
+				<span class="date-icon"></span>
+				</div>
+    		  
+    					
+    				<button type="submit" class="srch-btn">Search</button>
+    		  
+    		  </form>
+              
+              <a href="#" class="show-list"></a>              
+ 
+              <div class="clear"></div>
+            </div>            
+            <div class="catalog-head fly-in">
+              <label>Show results by airport:</label><br>
+             
+              <form action="/flight_history_s_airport"  method="POST" >
+              <label>departure airport</label>
+              <div class="search-select">
+                     
+							<select required name= "departure_airport" >
+							        <option value="" disabled selected>--</option>
+									{% for x in airportid %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div>
+              <label>arrival airport</label>
+              <div class="search-select">             
+							<select required name= "arrival_airport" >
+							        <option value="" disabled selected>--</option>
+									{% for x in airportid %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div>    		  
+    					
+    				<button type="submit" class="srch-btn">Search</button>
+    		  
+    		  </form>
+              
+              <a href="#" class="show-list"></a>              
+ 
+              <div class="clear"></div>
+            </div> 
+            
+            <div class="catalog-head fly-in">
+              <label>Show results by city:</label><br>
+             
+              <form action="/flight_history_s_city"  method="POST" >
+              <label>departure city</label>
+              <div class="search-select">
+                     
+							<select required name= "departure_city" >
+							        <option value="" disabled selected>--</option>
+									{% for x in airports_city %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div>
+              <label>arrival airport</label>
+              <div class="search-select">             
+							<select required name= "arrival_city" >
+							        <option value="" disabled selected>--</option>
+									{% for x in airports_city %}
+									<option value= {{ x }} {% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div>    		  
+    					
+    				<button type="submit" class="srch-btn">Search</button>
+    		  
+    		  </form>
+              
+              <a href="#" class="show-list"></a>              
+ 
+              <div class="clear"></div>
+            </div>             
+            
+            <div class="catalog-head fly-in">
+              <label>Get customer for flight:</label><br>
+             
+              <form action="/customer_of_flight"  method="POST" >
+              <label>Flight ID</label>
+              <div class="search-select">
+                     
+							<select required name= "flight_id" >
+							        <option value="" disabled selected>--</option>
+									{% for x in flightid %}
+									<option value= {{x}} {% if loop.first %} SELECTED{% endif %}>{{airline_id}}{{x}}</option>
+									{% endfor %}
+							</select>
+    							
+    		  </div>  		  
+    					
+    				<button type="submit" class="srch-btn">Search</button>
+    		  
+    		  </form>
+              
+              <a href="#" class="show-list"></a>              
+ 
+              <div class="clear"></div>
+            </div>      
+                             
+            <div class="catalog-row">
+              <!-- // flight-item // -->
+              {% for i in range(flight_info|length) %} 
+              <form action="/flight_history_s"  method="POST">
+              <div class="flight-item fly-in">
+                <div class="flt-i-a">
+                  <div class="flt-i-b">
+                    <div class="flt-i-bb">
+                    <div class="flt-l-a">
+                    
+                      <div class="flt-l-b">
+                        <div class="way-lbl">flight ID</div>
+                        <a href="/flight_history_s" class="company" name="flight_id">{{flight_info[i]["airline_id"]}}{{flight_info[i]["flight_id"]}}</a>
+                      </div>
+                      <div class="flt-l-c">
+                        <div class="flt-l-cb">
+                          <div class="flt-l-c-padding">
+                            <div class="flyght-info-head">{{flight_info[i]["departure_time"]}} {{flight_info[i]["departure_airport"]}} - {{flight_info[i]["arrival_airport"]}} {{flight_info[i]["arrival_time"]}}
+                            </div>
+                            <!-- // -->
+                            <div class="flight-line">
+                            
+                             <div class="flight-line-a">
+                                <b>status</b>
+                                <span>{{flight_info[i]["flight_status"]}}</span>
+                              </div>                          
+                                            
+                              
+                              <div class="flight-line-d"></div>
+                              <div class="flight-line-a">
+                                <b>price</b>
+                                <span>${{flight_info[i]["base_price"]}}</span>
+                              </div>
+
+                              
+                              <div class="clear"></div>
+                               
+                                                           
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <br class="clear" />
+                        
+                      </div>
+                    </div>
+                    <div class="clear"></div>
+                    </div>
+                    <br class="clear" />
+                  </div>
+                </div>
+                
+                <div class="clear"></div>
+              </div>
+              </form>
+              {% endfor %}
+              <!-- \\ flight-item \\ -->
+              
+                                                                 
+            </div>
+            
+            <div class="clear"></div>
+            
+          </div>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <div class="clear"></div>
+    
+    </div>	
+  </div>	
+</div>
+
+
+
+<!-- // scripts // -->
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  <script>
+  	$(document).ready(function(){
+	   'use strict';
+      (function($) {
+        $(function() {
+          $('input:checkbox,input:radio,.search-engine-range-selection-container input:radio').styler();
+        })
+      })(jQuery);   
+	  
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+      
+      $(".side-time").each(function(){
+          var $this = $(this);
+          $this.find('.time-range').slider({
+              range: true,
+              min: 0,
+              max: 24,
+              values: [ 3, 20 ],
+              slide: function( event, ui ) {
+                $this.find(".time-from").text(ui.values[0]);
+                $this.find(".time-to").text(ui.values[1]);
+              }
+          });
+          $(this).find(".time-from").text($this.find(".time-range").slider("values",0));
+          $(this).find(".time-to").text($this.find(".time-range").slider("values",1));
+        });
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
+{% if result == 1 %} 
+<script>alert('Success!')</script>
+{% endif %} 
+</body> 
+
+</html> 

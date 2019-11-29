@@ -1,0 +1,133 @@
+
+
+<html>
+<head>
+  <title>Home</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta content="eTravel.flights.searches.new" name="js-namespace">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">
+  <link rel="stylesheet" href="/static/css/style2.css" />
+   <link rel="stylesheet" href="/static/css/form.css" /> 
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- Navbar -->
+
+  <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">	
+				
+			<div class="header-phone">
+			{% if session['logged in'] == True %}
+			<span> {{username}}</span> 
+			{% else %}		
+			<span> Welcome</span> 
+			{% endif %}
+			</div>
+			
+            <div class="header-curency">
+            {% if session['logged in'] != True %}
+				<a href="#">Log in</a>
+				<div class="curency-drop">
+					<div><a href="/loginc">Individual Customer</a></div>
+					<div><a href="/logina">Travel Agent</a></div>
+					<div><a href="/logins">Airline Staff</a></div>
+				</div>
+			{% else %}
+				
+			    <a href="/logout">Logout</a>
+			{% endif %}
+			</div>	
+					
+			<div class="header-viewed">
+				<a href="2" class="header-viewed-btn">Register</a>
+				<!-- // viewed drop // -->
+					<div class="viewed-drop">
+						<div class="viewed-drop-a">
+							<!-- // -->
+							<div class="viewed-item">
+								
+								<div class="viewed-item-r">
+									<div class="viewed-item-lbl"><a href="/registerc">Individual Customer</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+								
+								<div class="viewed-item-r">
+									<div class="viewed-item-lbl"><a href="/registera">Travel Agent</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+								
+								<div class="viewed-item-r">
+									<div class="viewed-item-lbl"><a href="/registers">Airline Staff</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+						</div>
+					</div>
+				<!-- \\ viewed drop \\ -->	
+              </div>
+
+              <div class="clear"></div>
+		  </div>
+	   </div>
+
+
+    </header>
+<!-- Navbar -->
+
+<div class="autorize-padding">
+
+    <div class="form-style-10">
+    <br>
+    <br>
+    <br>
+    <h1>Sign Up Now!<span></span></h1>
+    <form action="/registeraAuth" method="POST">
+        <div class="section"><span></span>Basic Info</div>
+        <div class="inner-wrap">
+            <label>Email Address <input type="email" name="agent_email" required/></label>
+            <label>Agent ID <input type="text" name="booking_agent_ID" placeholder="username"required/></label> 
+            <label>Password <input type="password" name="agent_password" required/></label>
+            <label>Confirm Password <input type="password" name="cpassword" required/></label>       
+        </div>
+    
+        <div class="button-section">
+         <input type="submit" value=Register />
+         <span class="privacy-policy">
+         <input type="checkbox" name="checkbox" required>You agree to our Terms and Policy. 
+         </span>
+        </div>
+    </form>
+    </div>
+
+</div>
+
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Booking Complete</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">  
+  <link rel="stylesheet" href="/static/css/style2.css" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>	
+
+</head>  
+<body>  
+
+<!-- Navbar -->
+
+ <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">			
+			<div class="header-phone">
+			
+			<span> {{username}}</span> 
+			
+			
+			
+			</div>
+			
+            <div class="header-curency">
+                
+			    <a href="/logout" class="header-viewed-btn">Logout</a>
+			    
+			</div>
+			
+			<div class="header-viewed">
+				<a href="/customer_spending" class="header-viewed-btn">My Account</a>
+				
+				<div class="viewed-drop">
+						<div class="viewed-drop-a">
+						
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/customer_spending">Track Spending</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							
+							
+						 </div>
+					</div>
+					
+				
+            </div>
+			
+		  </div>
+	   </div>
+	
+	
+  </div>	
+  
+  <!-- Navbar -->	 
+	<div class="header-b">
+		
+			
+		<div class="wrapper-padding">
+			<div class="header-logo"><a href="index.html"></a></div>
+			<div class="header-right">
+				<div class="hdr-srch">
+					<a href="#" class="hdr-srch-btn"></a>
+				</div>
+				<div class="hdr-srch-overlay">
+					<div class="hdr-srch-overlay-a">
+						<input type="text" value="" placeholder="Start typing...">
+						<a href="#" class="srch-close"></a>
+						<div class="clear"></div>
+					</div>
+				</div>	
+				<div class="hdr-srch-devider"></div>
+				<a href="#" class="menu-btn"></a>
+				<nav class="header-nav">
+					<ul>
+						<li><a href="/home">Home</a>
+							
+						</li>
+			
+						<li><a href="#">Flights</a>
+							<ul>
+								<li><a href="/flight_history_c">Flights History</a></li>
+								<li><a href="/future_flights_c">Future Flights</a></li>
+															</ul>
+						</li>
+						
+					
+					</ul>
+				</nav>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>	
+</header>
+<!-- Navbar -->	 
+
+
+<!-- main-cont -->
+<div class="main-cont">
+  <div class="body-wrapper">
+    <div class="wrapper-padding">
+    <div class="page-head">
+      <div class="page-title">Flight - <span>booking failed</span></div>
+      <div class="breadcrumbs">
+        <a href="home">Home</a> / <span>flight booking</span>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+	<div class="sp-page">
+		<div class="sp-page-a">
+			<div class="sp-page-l">
+  				<div class="sp-page-lb">
+  					<div class="sp-page-p">
+						<div class="booking-left">
+							
+							
+							<div class="comlete-alert">
+								<div class="comlete-alert-a">
+									<b>We are sorry that we cannot complete your order.</b>
+									<b>{{error}}</b>
+									
+								</div>
+							</div>
+							
+							
+							
+						</div>
+  					</div>
+  				</div>
+  				<div class="clear"></div>
+			</div>
+		</div>
+
+		
+			
+		<div class="clear"></div>
+	</div>
+
+    </div>	
+  </div>  
+</div>
+<!-- /main-cont -->
+
+
+<footer class="footer-b">
+	<div class="wrapper-padding">
+		<div class="footer-left">© Copyright 2015 by Weblionmedia. All rights reserved.</div>
+		<div class="footer-social">
+			<a href="#" class="footer-twitter"></a>
+			<a href="#" class="footer-facebook"></a>
+			<a href="#" class="footer-vimeo"></a>
+			<a href="#" class="footer-pinterest"></a>
+			<a href="#" class="footer-instagram"></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</footer>
+
+<!-- // scripts // -->
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  <script>
+  	$(document).ready(function(){
+	   'use strict';
+      (function($) {
+        $(function() {
+          $('input:checkbox,input:radio,.search-engine-range-selection-container input:radio').styler();
+        })
+      })(jQuery);   
+	  
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+      
+      $(".side-time").each(function(){
+          var $this = $(this);
+          $this.find('.time-range').slider({
+              range: true,
+              min: 0,
+              max: 24,
+              values: [ 3, 20 ],
+              slide: function( event, ui ) {
+                $this.find(".time-from").text(ui.values[0]);
+                $this.find(".time-to").text(ui.values[1]);
+              }
+          });
+          $(this).find(".time-from").text($this.find(".time-range").slider("values",0));
+          $(this).find(".time-to").text($this.find(".time-range").slider("values",1));
+        });
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
+ 
+</body>  
+</html> 

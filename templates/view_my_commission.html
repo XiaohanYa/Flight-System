@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title }}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta charset="utf-8" /><link rel="icon" href="favicon.png" />
+  <meta content="eTravel.flights.searches.new" name="js-namespace">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <link rel="stylesheet" href="/static/css/jquery.formstyler.css">
+  <link rel="stylesheet" href="/static/css/style2.css" />
+  
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>    
+  <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,700' rel='stylesheet' type='text/css'>  
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+  <header id="top">
+	<div class="header-a">
+		<div class="wrapper-padding">			
+			<div class="header-phone">
+			
+			<span> {{username}}</span> 
+			
+			
+			
+			</div>
+			
+            <div class="header-viewed">
+                
+			    <a href="/logout" class="header-viewed-btn">Logout</a>
+			    
+			</div>
+			
+			<div class="header-viewed">
+				<a href="#" class="header-viewed-btn">My Account</a>
+				<div class="viewed-drop">
+						<div class="viewed-drop-a">
+						
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_my_commission">View My Commission</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							<!-- // -->
+							<div class="viewed-item">
+							    
+								
+								<div class="viewed-item-l">
+									<div class="viewed-item-lbl"><a href="/view_top_customers">View Top Customers</a></div>	
+								</div>
+								<div class="clear"></div>
+							</div>
+							<!-- \\ -->
+							
+							
+							
+						 </div>
+				 </div>
+					
+            </div>
+			
+		  </div>
+	   </div>
+	
+	
+  </div>	
+  
+  <!-- Navbar -->	 
+	<div class="header-b">
+		
+			
+		<div class="wrapper-padding">
+			<div class="header-logo"><a href="index.html"></a></div>
+			<div class="header-right">
+				<div class="hdr-srch">
+					<a href="#" class="hdr-srch-btn"></a>
+				</div>
+				<div class="hdr-srch-overlay">
+					<div class="hdr-srch-overlay-a">
+						<input type="text" value="" placeholder="Start typing...">
+						<a href="#" class="srch-close"></a>
+						<div class="clear"></div>
+					</div>
+				</div>	
+				<div class="hdr-srch-devider"></div>
+				<a href="#" class="menu-btn"></a>
+				<nav class="header-nav">
+					<ul>
+						<li><a href="/home">Home</a>
+							
+						</li>
+			
+						<li><a href="#">Flights</a>
+							<ul>
+								<li><a href="/flight_history_a">Flights History</a></li>
+								<li><a href="/future_flights_a">Future Flights</a></li>
+															</ul>
+						</li>
+						
+					
+					</ul>
+				</nav>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>	
+</header>
+  
+
+<!-- Navbar -->	
+
+<div class="main-cont">
+<div class="clear"></div>
+
+<div class="body-wrapper">
+    
+<div class="side-block fly-in">
+          <div class="side-block-search">
+            <div class="page-search-p">
+						<!-- // -->
+						<form action="/view_my_commission" method= "POST">
+						
+						<!-- // -->
+						<div class="srch-tab-line">
+							<div class="srch-tab-left">
+								<label>Beginning</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "begin"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="srch-tab-right">
+								<label>End</label>
+								<div class="input-a">
+								
+								  <input required type="text" name= "end"  class="date-inpt" placeholder="mm/dd/yyyy"> 
+								  <span class="date-icon"></span>
+								</div>	
+							</div>
+							<div class="clear"></div>
+						</div>
+							
+
+             			<button type="submit" class="srch-btn">Search</button> 
+    					</div>  
+                   </form>	
+          </div>          
+        </div>
+    </div>         
+  </div>
+
+
+ 
+
+  
+  <div class="swiper-container">
+  <center>
+  <h1>{{title}}</h1>
+  <p>In this time range, you have totally gain ${{total_info["total_commission"]}} for us. 
+  You have sold {{total_info["sold_tickets_num"]}} tickets and gain ${{total_info["avg_commission"]}} commission per ticket.
+  </p>
+  </center>
+  
+ 
+  
+  
+  <center>
+    
+    <h2>Total Number of Tickets Sold</h2>
+  </center>
+  <center>
+    <canvas id="chart_total" width="500" height="300"></canvas>
+  </center>
+  
+  
+   <center>
+    <h2>Total Commission(Orange) and Average Commission Per Ticket(Yellow)</h2>
+  </center>
+  <center>
+    <canvas id="chart_separate" width="500" height="300"></canvas>
+  </center> 
+  
+    <script>
+      // bar chart data
+      var barData_separate = {
+        labels : [
+          {% for item in commission.keys() %}
+           "{{ item }}",
+          {% endfor %}
+	     ],
+        datasets : [{
+          label: 'Total Commision',
+          fillColor: "rgba(255,99,71,0.2)",
+          strokeColor: "rgba(255,99,71,1)",
+          pointColor: "rgba(255,99,71,1)",
+          data : [
+            {% for item in commission.values() %}
+               "{{ item }}",
+              {% endfor %}]
+          },
+          
+          {
+          label: 'Average Commission Per Ticket',
+          fillColor: "rgba(255,165,0,0.2)",
+          strokeColor: "rgba(255,165,0,1)",
+          pointColor: "rgba(255,165,0,1)",
+          data : [
+            {% for item in avg_commission.values() %}
+               "{{ item }}",
+              {% endfor %}]
+          }
+        ]
+      }
+      
+      var barData_total = {
+        labels : [
+          {% for item in sold_tickets.keys() %}
+           "{{ item }}",
+          {% endfor %}
+	     ],
+        datasets : [{
+          label: 'Number of Tickets Sold',
+          fillColor: "rgba(255,127,80,0.2)",
+          strokeColor: "rgba(255,127,80,1)",
+          pointColor: "rgba(255,127,80,1)",
+          data : [
+            {% for item in sold_tickets.values() %}
+               "{{ item }}",
+              {% endfor %}]
+          },
+          
+          
+        ]
+      }
+      
+      
+      
+     
+
+     // get bar chart canvas
+     var mychart_separate = document.getElementById("chart_separate").getContext("2d");
+     var mychart_total = document.getElementById("chart_total").getContext("2d");
+     steps = 10
+     max_commission = {{max_commission}}
+     
+     max_tickets_amount = {{max_tickets_amount}}
+     
+     window.onload = function () {
+       
+        
+        window.myBar = new Chart(mychart_separate).Bar(barData_separate, {
+                      
+                      scaleOverride: true,
+                      scaleSteps: steps,
+                      scaleStepWidth: Math.ceil(max_commission / steps),
+                      scaleStartValue: 0,
+                      scaleShowVerticalLines: true,
+                      scaleShowGridLines : true,
+                      barShowStroke : true,
+                      scaleShowLabels: true }
+                      );
+        window.myBar =  new Chart(mychart_total).Bar(barData_total, {
+                      
+                      scaleOverride: true,
+                      scaleSteps: steps,
+                      scaleStepWidth: Math.ceil(max_tickets_amount / steps),
+                      scaleStartValue: 0,
+                      scaleShowVerticalLines: true,
+                      scaleShowGridLines : true,
+                      barShowStroke : true,
+                      scaleShowLabels: true }
+                      );
+        
+		
+    }
+
+      
+    </script>
+  </center>
+  <div class="clear"></div>
+  
+  
+  
+  
+  
+  </div>
+</div>
+
+
+<!-- // scripts // -->
+  <script src= "{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script src= "{{url_for('static', filename='js/jqeury.appear.js')}}"></script>
+  <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/bxSlider.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/jquery.formstyler.js')}}"></script>
+  <script src="{{url_for('static', filename= 'js/custom.select.js')}}"></script> 
+  <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>     
+  <script type="text/javascript" src="{{url_for('static', filename='js/twitterfeed.js')}}"></script>
+  <script src="{{url_for('static', filename='js/script.js')}}"></script>
+  <script>
+  	$(document).ready(function(){
+	   'use strict';
+      (function($) {
+        $(function() {
+          $('input:checkbox,input:radio,.search-engine-range-selection-container input:radio').styler();
+        })
+      })(jQuery);   
+	  
+		var slider_range = $("#slider-range");
+		var ammount_from = $("#ammount-from");
+		var ammount_to = $("#ammount-to");
+		
+		$(function() {
+			slider_range.slider({
+			  range: true,
+			  min: 0,
+			  max: 1500,
+			  values: [ 275, 1100 ],
+			  slide: function( event, ui ) {
+				ammount_from.val(ui.values[0]+'$');
+				ammount_to.val(ui.values[1]+'$');
+			  }
+			});
+			ammount_from.val(slider_range.slider("values",0)+'$');
+			ammount_to.val(slider_range.slider("values",1)+'$');
+		});
+      
+      $(".side-time").each(function(){
+          var $this = $(this);
+          $this.find('.time-range').slider({
+              range: true,
+              min: 0,
+              max: 24,
+              values: [ 3, 20 ],
+              slide: function( event, ui ) {
+                $this.find(".time-from").text(ui.values[0]);
+                $this.find(".time-to").text(ui.values[1]);
+              }
+          });
+          $(this).find(".time-from").text($this.find(".time-range").slider("values",0));
+          $(this).find(".time-to").text($this.find(".time-range").slider("values",1));
+        });
+  	});
+  </script>
+<!-- \\ scripts \\ --> 
+
+
+</body>
+
+
+
+
+</html>
